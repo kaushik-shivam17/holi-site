@@ -17,19 +17,15 @@ export default function AudioPlayer({ isPlaying, name, playGreeting }: AudioPlay
   useEffect(() => {
     if (audioRef.current) {
       if (isPlaying && !isMuted) {
-        audioRef.current.play().catch(e => console.error("Audio play failed:", e));
-        
-        // Fade in volume
-        audioRef.current.volume = 0;
-        let vol = 0;
-        const fadeInterval = setInterval(() => {
-          if (vol < 0.5) { // Max volume 0.5 to not overpower
-            vol += 0.05;
-            if (audioRef.current) audioRef.current.volume = vol;
-          } else {
-            clearInterval(fadeInterval);
-          }
-        }, 300);
+        audioRef.current.volume = 0.6;
+        const playPromise = audioRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(e => {
+            console.error("Audio play failed:", e);
+            // If autoplay fails, mute the audio so the user can manually start it
+            setIsMuted(true);
+          });
+        }
       } else {
         audioRef.current.pause();
       }
@@ -53,7 +49,7 @@ export default function AudioPlayer({ isPlaying, name, playGreeting }: AudioPlay
         
         utterance.onend = () => {
           // Restore background music volume
-          if (audioRef.current) audioRef.current.volume = 0.5;
+          if (audioRef.current) audioRef.current.volume = 0.6;
         };
         
         window.speechSynthesis.speak(utterance);
@@ -69,13 +65,13 @@ export default function AudioPlayer({ isPlaying, name, playGreeting }: AudioPlay
 
   return (
     <>
-      {/* Background Music - Reliable Wikimedia Commons Indian Flute Track */}
-      <audio 
-        ref={audioRef} 
-        src="https://upload.wikimedia.org/wikipedia/commons/4/44/Bansuri_bamboo_flute_-_Raga_Yaman.ogg" 
-        loop 
-        preload="auto"
-      />
+      {/* Background Music - Reliable MP3 sources for cross-browser compatibility */}
+      <audio ref={audioRef} loop preload="auto">
+        {/* Primary: Upbeat Festive Indian Track */}
+        <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=india-music-107334.mp3" type="audio/mpeg" />
+        {/* Fallback: Flute Track */}
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8b8f8f2b7.mp3?filename=indian-flute-and-tabla-113038.mp3" type="audio/mpeg" />
+      </audio>
       
       <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3">
         <AnimatePresence>
@@ -87,7 +83,7 @@ export default function AudioPlayer({ isPlaying, name, playGreeting }: AudioPlay
               className="glass-panel px-4 py-2 rounded-full flex items-center gap-2 text-sm text-[#FDE047] border border-[#EAB308]/50"
             >
               <Music className="w-4 h-4 animate-pulse" />
-              Holi Khele Raghuveera
+              Holi Festive Music
             </motion.div>
           )}
         </AnimatePresence>

@@ -67,7 +67,7 @@ export default function MainGreeting({ name }: MainGreetingProps) {
           >
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 gold-text leading-tight">
             🌸 होली की हार्दिक शुभकामनाएँ,<br/>
-            <span className="brush-text text-5xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-yellow-400 to-cyan-400 inline-block mt-2">
+            <span className="brush-text text-5xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-yellow-400 to-cyan-400 inline-block mt-2" style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
               {name}!
             </span> 🌸
           </h1>
@@ -93,20 +93,21 @@ export default function MainGreeting({ name }: MainGreetingProps) {
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <div className="relative">
-              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-[#EAB308] shadow-[0_0_20px_rgba(234,179,8,0.6)] bg-gradient-to-br from-[#4A0404] to-[#A16207]">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Baby_Krishna_Eating_Butter.jpg/512px-Baby_Krishna_Eating_Butter.jpg" alt="Little Krishna" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-pink-500 via-yellow-400 to-cyan-400 rounded-full blur opacity-75 animate-pulse"></div>
+              <div className="relative w-20 h-20 rounded-full overflow-hidden border-4 border-[#EAB308] shadow-[0_0_20px_rgba(234,179,8,0.8)] bg-[#2A0000]">
+                <img src="https://cdn.pixabay.com/photo/2023/08/19/13/42/lord-krishna-8200508_640.jpg" alt="Little Krishna" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
               </div>
               <motion.div 
-                className="absolute -bottom-1 -right-1 bg-pink-500 rounded-full p-1.5 border border-white/20 shadow-lg"
+                className="absolute -bottom-1 -right-1 bg-pink-500 rounded-full p-2 border-2 border-white/50 shadow-lg"
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
               >
-                <Heart className="w-3 h-3 text-white fill-white" />
+                <Heart className="w-4 h-4 text-white fill-white" />
               </motion.div>
             </div>
-            <div className="glass-panel px-5 py-2.5 rounded-full text-sm md:text-base text-[#FDE047] flex items-center gap-2 shadow-lg">
-              <span className="font-medium">आपके लिए कुछ खास है... नीचे देखें</span>
+            <div className="glass-panel px-6 py-3 rounded-full text-sm md:text-base text-[#FDE047] flex items-center gap-2 shadow-[0_10px_30px_rgba(0,0,0,0.5)] border border-[#EAB308]/40">
+              <span className="font-bold tracking-wide">आपके लिए कुछ खास है... नीचे देखें</span>
               <ChevronDown className="w-5 h-5 animate-bounce text-pink-400" />
             </div>
           </motion.div>
@@ -158,21 +159,21 @@ export default function MainGreeting({ name }: MainGreetingProps) {
             🦚 कान्हा के संग रंगों की मस्ती
           </h2>
           
-          <div className="relative max-w-4xl mx-auto h-64 md:h-96 rounded-3xl overflow-hidden border-4 border-[#EAB308]/50 shadow-[0_0_30px_rgba(234,179,8,0.3)]">
+          <div className="relative max-w-4xl mx-auto h-72 md:h-[450px] rounded-3xl overflow-hidden border-4 border-[#EAB308]/60 shadow-[0_0_50px_rgba(234,179,8,0.4)]">
             <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-[#2A0000] flex items-center justify-center">
               <motion.div 
-                className="absolute inset-0 opacity-60"
+                className="absolute inset-0 opacity-80"
                 style={{
-                  backgroundImage: 'url("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Baby_Krishna_Eating_Butter.jpg/1024px-Baby_Krishna_Eating_Butter.jpg")',
+                  backgroundImage: 'url("https://cdn.pixabay.com/photo/2023/08/19/13/42/lord-krishna-8200508_1280.jpg")',
                   backgroundSize: 'cover',
-                  backgroundPosition: 'center',
+                  backgroundPosition: 'center 20%',
                 }}
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 10, repeat: Infinity }}
+                animate={{ scale: [1, 1.08, 1] }}
+                transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
               />
-              <div className="absolute inset-0 bg-black/40" />
-              <div className="relative z-10 text-center p-6 glass-panel rounded-2xl">
-                 <p className="text-2xl md:text-3xl font-bold text-white drop-shadow-lg">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#2A0000] via-black/20 to-transparent" />
+              <div className="relative z-10 text-center p-8 glass-panel rounded-2xl border border-white/20 backdrop-blur-md shadow-2xl">
+                 <p className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-yellow-500 drop-shadow-lg">
                    राधे-राधे! 🌸
                  </p>
               </div>

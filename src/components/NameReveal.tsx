@@ -12,7 +12,7 @@ export default function NameReveal({ name, onComplete }: NameRevealProps) {
 
   useEffect(() => {
     // Trigger powder burst after name is written
-    const duration = name.length * 200 + 1000; // Adjust based on name length
+    const duration = name.length * 100 + 400; // Much faster
     
     const timer1 = setTimeout(() => {
       setShowGlow(true);
@@ -30,7 +30,7 @@ export default function NameReveal({ name, onComplete }: NameRevealProps) {
     // Transition to main greeting
     const timer2 = setTimeout(() => {
       onComplete();
-    }, duration + 2500);
+    }, duration + 1000); // Faster transition
 
     return () => {
       clearTimeout(timer1);
@@ -71,8 +71,8 @@ export default function NameReveal({ name, onComplete }: NameRevealProps) {
               initial={{ opacity: 0, y: 50, rotate: -10 }}
               animate={{ opacity: 1, y: 0, rotate: 0 }}
               transition={{
-                duration: 0.5,
-                delay: index * 0.2,
+                duration: 0.4,
+                delay: index * 0.08,
                 type: "spring",
                 damping: 12,
                 stiffness: 100
