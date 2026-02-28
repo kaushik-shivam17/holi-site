@@ -36,7 +36,7 @@ export default function AudioPlayer({ isPlaying, name, playGreeting }: AudioPlay
     if (playGreeting && !hasPlayedGreeting.current && !isMuted) {
       hasPlayedGreeting.current = true;
       
-      // Use Web Speech API for AI Voice Greeting
+      // Use Web Speech API for Voice Greeting
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel(); // Clear any ongoing speech
         const utterance = new SpeechSynthesisUtterance(`होली की हार्दिक शुभकामनाएँ, ${name}`);

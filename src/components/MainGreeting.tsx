@@ -10,10 +10,33 @@ export default function MainGreeting({ name }: MainGreetingProps) {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const [viewCount, setViewCount] = useState(0);
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
     // Simulate view count
     setViewCount(Math.floor(Math.random() * 500) + 100);
+
+    // Target date: 4th March 2026
+    const targetDate = new Date('2026-03-04T00:00:00').getTime();
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        clearInterval(interval);
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      } else {
+        setTimeLeft({
+          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((distance % (1000 * 60)) / 1000)
+        });
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const shareUrl = `${window.location.origin}/?from=${encodeURIComponent(name)}`;
@@ -83,6 +106,31 @@ export default function MainGreeting({ name }: MainGreetingProps) {
               और <span className="text-cyan-400 font-bold">प्रेम की मिठास</span> भर दें।<br/>
               आपका जीवन सदा इंद्रधनुष की तरह रंगीन रहे।
             </p>
+            
+            {/* Countdown Timer */}
+            <div className="mt-8 flex flex-col items-center border-t border-[#EAB308]/30 pt-6">
+              <div className="flex items-center gap-2 mb-3 text-[#FDE047]">
+                <span className="text-lg font-medium">होली आने में बाकी हैं:</span>
+              </div>
+              <div className="flex gap-3 text-center">
+                <div className="bg-[#4A0404] border border-[#EAB308]/50 rounded-lg p-2 min-w-[60px]">
+                  <div className="text-2xl font-bold text-white">{timeLeft.days}</div>
+                  <div className="text-[10px] text-[#FDE047] uppercase mt-1">दिन</div>
+                </div>
+                <div className="bg-[#4A0404] border border-[#EAB308]/50 rounded-lg p-2 min-w-[60px]">
+                  <div className="text-2xl font-bold text-white">{timeLeft.hours}</div>
+                  <div className="text-[10px] text-[#FDE047] uppercase mt-1">घंटे</div>
+                </div>
+                <div className="bg-[#4A0404] border border-[#EAB308]/50 rounded-lg p-2 min-w-[60px]">
+                  <div className="text-2xl font-bold text-white">{timeLeft.minutes}</div>
+                  <div className="text-[10px] text-[#FDE047] uppercase mt-1">मिनट</div>
+                </div>
+                <div className="bg-[#4A0404] border border-[#EAB308]/50 rounded-lg p-2 min-w-[60px]">
+                  <div className="text-2xl font-bold text-white">{timeLeft.seconds}</div>
+                  <div className="text-[10px] text-[#FDE047] uppercase mt-1">सेकंड</div>
+                </div>
+              </div>
+            </div>
           </motion.div>
           </motion.div>
 

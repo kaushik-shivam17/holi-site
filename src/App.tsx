@@ -42,7 +42,7 @@ export default function App() {
 
   const handleNameRevealComplete = () => {
     setScreen('main');
-    setPlayGreeting(true); // Trigger AI voice
+    setPlayGreeting(true); // Trigger voice
   };
 
   return (

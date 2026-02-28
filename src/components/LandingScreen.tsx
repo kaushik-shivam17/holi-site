@@ -1,5 +1,6 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Clock } from 'lucide-react';
 
 interface LandingScreenProps {
   fromName: string;
@@ -7,6 +8,32 @@ interface LandingScreenProps {
 }
 
 export default function LandingScreen({ fromName, onRevealClick }: LandingScreenProps) {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    // Target date: 4th March 2026
+    const targetDate = new Date('2026-03-04T00:00:00').getTime();
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        clearInterval(interval);
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      } else {
+        setTimeLeft({
+          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((distance % (1000 * 60)) / 1000)
+        });
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#2A0000]">
       {/* Royal Curtains Background */}
@@ -56,6 +83,32 @@ export default function LandingScreen({ fromName, onRevealClick }: LandingScreen
         <p className="text-xl md:text-2xl mb-8 text-gray-200">
           ने आपके लिए एक जादुई होली सरप्राइज़ भेजा है! 🎨
         </p>
+
+        {/* Countdown Timer */}
+        <div className="mb-8 flex flex-col items-center">
+          <div className="flex items-center gap-2 mb-3 text-[#FDE047]">
+            <Clock className="w-5 h-5" />
+            <span className="text-lg font-medium">होली आने में बाकी हैं:</span>
+          </div>
+          <div className="flex gap-4 text-center">
+            <div className="bg-[#4A0404] border border-[#EAB308]/50 rounded-lg p-3 min-w-[70px]">
+              <div className="text-3xl font-bold text-white">{timeLeft.days}</div>
+              <div className="text-xs text-[#FDE047] uppercase mt-1">दिन</div>
+            </div>
+            <div className="bg-[#4A0404] border border-[#EAB308]/50 rounded-lg p-3 min-w-[70px]">
+              <div className="text-3xl font-bold text-white">{timeLeft.hours}</div>
+              <div className="text-xs text-[#FDE047] uppercase mt-1">घंटे</div>
+            </div>
+            <div className="bg-[#4A0404] border border-[#EAB308]/50 rounded-lg p-3 min-w-[70px]">
+              <div className="text-3xl font-bold text-white">{timeLeft.minutes}</div>
+              <div className="text-xs text-[#FDE047] uppercase mt-1">मिनट</div>
+            </div>
+            <div className="bg-[#4A0404] border border-[#EAB308]/50 rounded-lg p-3 min-w-[70px]">
+              <div className="text-3xl font-bold text-white">{timeLeft.seconds}</div>
+              <div className="text-xs text-[#FDE047] uppercase mt-1">सेकंड</div>
+            </div>
+          </div>
+        </div>
 
         <button 
           onClick={onRevealClick}
