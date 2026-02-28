@@ -69,13 +69,12 @@ export default function AudioPlayer({ isPlaying, name, playGreeting }: AudioPlay
 
   return (
     <>
-      {/* Background Music - Reliable public domain Bollywood/Indian style track */}
+      {/* Background Music - Reliable Wikimedia Commons Indian Flute Track */}
       <audio 
         ref={audioRef} 
-        src="https://freepd.com/music/Bollywood%20Blades.mp3" 
+        src="https://upload.wikimedia.org/wikipedia/commons/4/44/Bansuri_bamboo_flute_-_Raga_Yaman.ogg" 
         loop 
         preload="auto"
-        crossOrigin="anonymous"
       />
       
       <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3">
