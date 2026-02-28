@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-royal: "Tiro Devanagari Hindi", serif;
+  --font-brush: "Kalam", cursive;
+  --color-gold-light: #FDE047;
+  --color-gold: #EAB308;
+  --color-gold-dark: #A16207;
+  --color-velvet: #4A0404;
+  --color-velvet-dark: #2A0000;
+}
+
+body {
+  background-color: #2A0000;
+  color: white;
+  overflow-x: hidden;
+  font-family: "Tiro Devanagari Hindi", serif;
+}
+
+.gold-text {
+  background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+}
+
+.gold-border {
+  border: 2px solid transparent;
+  border-image: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C) 1;
+}
+
+.gold-button {
+  background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+  color: #2A0000;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(252, 246, 186, 0.4);
+  transition: all 0.3s ease;
+}
+
+.gold-button:hover {
+  box-shadow: 0 6px 20px rgba(252, 246, 186, 0.6);
+  transform: translateY(-2px);
+}
+
+.glass-panel {
+  background: rgba(42, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(252, 246, 186, 0.3);
+}
+
+.brush-text {
+  font-family: "Kalam", cursive;
+}
