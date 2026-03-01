@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Analytics } from '@vercel/analytics/react';
 import LandingScreen from './components/LandingScreen';
 import NamePopup from './components/NamePopup';
 import CurtainAnimation from './components/CurtainAnimation';
@@ -80,6 +81,8 @@ export default function App() {
         name={userName} 
         playGreeting={playGreeting} 
       />
+
+      <Analytics />
     </div>
   );
 }
