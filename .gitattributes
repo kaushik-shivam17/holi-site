@@ -1,0 +1,5 @@
+*.ts linguist-language=JavaScript
+*.tsx linguist-language=JavaScript
+tsconfig.json linguist-detectable=false
+tsconfig.node.json linguist-detectable=false
+vite.config.ts linguist-language=JavaScript

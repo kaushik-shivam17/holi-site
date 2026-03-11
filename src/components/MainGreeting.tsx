@@ -209,17 +209,15 @@ export default function MainGreeting({ name }: MainGreetingProps) {
           
           <div className="relative max-w-4xl mx-auto h-72 md:h-[450px] rounded-3xl overflow-hidden border-4 border-[#EAB308]/60 shadow-[0_0_50px_rgba(234,179,8,0.4)]">
             <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-[#2A0000] flex items-center justify-center">
-              <motion.div 
-                className="absolute inset-0 opacity-80"
-                style={{
-                  backgroundImage: 'url("https://cdn.pixabay.com/photo/2023/08/19/13/42/lord-krishna-8200508_1280.jpg")',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center 20%',
-                }}
-                animate={{ scale: [1, 1.08, 1] }}
-                transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+              <motion.img 
+                src="https://media1.tenor.com/m/vH_1X9z6G_8AAAAi/happy-holi-radha-krishna.gif"
+                alt="Radha Krishna playing Holi with water gun"
+                className="absolute inset-0 w-full h-full object-cover opacity-90"
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2A0000] via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#2A0000] via-black/40 to-transparent" />
               <div className="relative z-10 text-center p-8 glass-panel rounded-2xl border border-white/20 backdrop-blur-md shadow-2xl">
                  <p className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-yellow-500 drop-shadow-lg">
                    राधे-राधे! 🌸
